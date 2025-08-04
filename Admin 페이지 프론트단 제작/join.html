@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="join.css" />
   </head>
   <body>
-    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 다크 모드</button>
+    <button
+      class="darkmode-toggle"
+      onclick="toggleDarkMode()"
+      title="모드 전환"
+      id="modeIcon"
+    >
+      🌙
+    </button>
 
     <fieldset>
       <form onsubmit="return validatePasswords(), handleSubmit(event)">
@@ -109,11 +116,18 @@
 
     <script>
       function toggleDarkMode() {
-        document.body.classList.toggle("dark-mode");
-        const btn = document.querySelector(".toggle-btn");
-        btn.textContent = document.body.classList.contains("dark-mode")
-          ? "☀️ 라이트 모드"
-          : "🌙 다크 모드";
+        const body = document.body;
+        const icon = document.getElementById("modeIcon");
+
+        const isDarkMode = body.classList.toggle("dark-mode");
+
+        if (isDarkMode) {
+          body.classList.remove("light-mode");
+          icon.textContent = "☀️"; // light 모드 아이콘
+        } else {
+          body.classList.add("light-mode");
+          icon.textContent = "🌙"; // dark 모드 아이콘
+        }
       }
 
       const pwInput = document.getElementById("password");
