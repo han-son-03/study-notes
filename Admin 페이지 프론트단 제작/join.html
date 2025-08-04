@@ -192,14 +192,15 @@
 
         const form = event.target;
         const formData = new FormData(form);
-        const params = new URLSearchParams();
+        const signupData = {};
 
         for (const [key, value] of formData.entries()) {
-          params.append(key, value);
+          signupData[key] = value;
         }
+        sessionStorage.setItem("signupData", JSON.stringify(signupData));
 
         // 새 창으로 welcome.html 열기
-        window.open(`welcome.html?${params.toString()}`, "_blank");
+        window.open("welcome.html", "_blank");
 
         return false; // 폼 제출 막기 (페이지 리로드 방지)
       }

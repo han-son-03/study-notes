@@ -19,6 +19,11 @@
         margin: 0;
         flex-direction: column; /* 세로 방향으로 쌓기 */
       }
+      #welcomeText {
+        text-align: center;
+        white-space: pre-line;
+      }
+
       table {
         border-collapse: collapse;
         width: 100%;
@@ -37,47 +42,19 @@
     </style>
   </head>
   <body>
-    <h2>회원가입이 완료되었습니다 🎉</h2>
-
-    <table id="userInfoTable">
-      <thead>
-        <tr>
-          <th>항목</th>
-          <th>입력 값</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <h2 id="welcomeText">회원가입이 완료되었습니다 🎉</h2>
+    <!-- 메인으로 버튼 -->
+    <button class="btn btn-primary mt-4" onclick="goToMain()">메인으로</button>
 
     <script>
-      const tbody = document.querySelector("#userInfoTable tbody");
       const data = JSON.parse(sessionStorage.getItem("signupData"));
 
-      const labelMap = {
-        id: "아이디",
-        name: "이름",
-        phone: "전화번호",
-        email: "이메일",
-        job: "희망직무",
-        gender: "성별",
-      };
-
       if (data) {
-        for (const key in data) {
-          const tr = document.createElement("tr");
-          const tdKey = document.createElement("td");
-          const tdValue = document.createElement("td");
-
-          tdKey.textContent = labelMap[key] || key;
-          tdValue.textContent = data[key];
-
-          tr.appendChild(tdKey);
-          tr.appendChild(tdValue);
-          tbody.appendChild(tr);
-        }
-      } else {
-        tbody.innerHTML =
-          "<tr><td colspan='2'>표시할 정보가 없습니다.</td></tr>";
+        const welcomeMessage = `환영합니다🎉 \n ${data.job}, ${data.name}님 \n '${data.id}'으로 회원가입 되었습니다`;
+        document.getElementById("welcomeText").innerText = welcomeMessage;
+      }
+      function goToMain() {
+        window.location.href = "main-edit.html";
       }
     </script>
 
