@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="Ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 & 이벤트 핸들링</title>
+  </head>
+  <body>
+    <button id="span">SPAN</button>
+    <button id="strong">STRONG</button>
+    <button id="mark">MARK</button>
+    <hr />
+
+    <script>
+      const spanBtn = document.getElementById("span");
+      const strongBtn = document.getElementById("strong");
+      const markBtn = document.getElementById("mark");
+
+      function handleClick() {
+        alert("클릭했어요!");
+      }
+      spanBtn.onclick = function(){
+        const span = document.createElement("span")
+        span.textContent ="새로 생긴 span 태그입니다"
+        document.body.append(span)
+      }
+
+      spanBtn.addEventListener("")
+    </script>
+  </body>
+</html>
