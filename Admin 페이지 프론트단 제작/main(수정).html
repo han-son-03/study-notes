@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>신규 등록 상품</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main(수정).css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-bar">
+        <h2>신규 등록 상품</h2>
+        <div class="time-display" id="timeDisplay">날짜 로딩중...</div>
+      </div>
+
+      <div class="search-bar">
+        <select>
+          <option disabled selected>카테고리</option>
+          <option>상의</option>
+          <option>하의</option>
+          <option>신발</option>
+          <option>패션잡화</option>
+        </select>
+
+        <input type="text" placeholder="제품명을 입력해주세요" />
+
+        <select>
+          <option disabled selected>성별 선택</option>
+          <option>남자</option>
+          <option>여자</option>
+          <option>기타</option>
+        </select>
+
+        <button>조회</button>
+        <button
+          class="btn btn-primary btn-sm"
+          onclick="location.href='join.html'"
+        >
+          회원 가입
+        </button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>카테고리</th>
+            <th>브랜드</th>
+            <th>상품명</th>
+            <th>가격</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>상의</td>
+            <td>Supreme</td>
+            <td>슈프림 박스로고 후드티</td>
+            <td>390,000</td>
+          </tr>
+          <tr>
+            <td>하의</td>
+            <td>DIESEL</td>
+            <td>디젤 트랙 팬츠</td>
+            <td>188,000</td>
+          </tr>
+          <tr>
+            <td>신발</td>
+            <td>Nike</td>
+            <td>에어포스 1</td>
+            <td>137,000</td>
+          </tr>
+          <tr>
+            <td>패션잡화</td>
+            <td>Music&Goods</td>
+            <td>뽀빵이 키링</td>
+            <td>29,000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <button>Previous</button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>Next</button>
+      </div>
+    </div>
+
+    <!-- 다크모드 토글 버튼 -->
+    <button
+      class="darkmode-toggle"
+      onclick="toggleDarkMode()"
+      title="모드 전환"
+      id="modeIcon"
+    >
+      🌙
+    </button>
+
+    <script>
+      // 실시간 날짜/시간 표시
+      function updateTime() {
+        const now = new Date();
+        const formatted = now.toLocaleString("ko-KR");
+        document.getElementById("timeDisplay").textContent = formatted;
+      }
+      setInterval(updateTime, 1000);
+      updateTime();
+
+      // 다크모드 토글
+      function toggleDarkMode() {
+        document.body.classList.toggle("light-mode");
+
+        const icon = document.getElementById("modeIcon");
+        icon.textContent = document.body.classList.contains("light-mode")
+          ? "☀️"
+          : "🌙";
+      }
+    </script>
+  </body>
+</html>
