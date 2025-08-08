@@ -119,5 +119,33 @@
           : "🌙";
       }
     </script>
+    <!-- 데이터 베이스 -->
+    <div id="product-list" class="container mt-4 d-flex flex-wrap"></div>
+    <script>
+      async function fetchProducts() {
+        try {
+          const response = await fetch("http://127.0.0.1:5000/api/products");
+          const products = await response.json();
+
+          const container = document.getElementById("product-list");
+          container.innerHTML = "";
+
+          products.forEach((product) => {
+            const card = document.createElement("div");
+            card.className = "card m-2 p-2";
+            card.innerHTML = `
+          <h5>${product.name}</h5>
+          <p><strong>브랜드:</strong> ${product.brand}</p>
+          <p><strong>카테고리:</strong> ${product.category}</p>
+          <p><strong>가격:</strong> ${product.price}</p>
+        `;
+            container.appendChild(card);
+          });
+        } catch (error) {
+          console.error("상품을 불러오는 데 실패했습니다:", error);
+        }
+      }
+      window.addEventListener("DOMContentLoaded", fetchProducts);
+    </script>
   </body>
 </html>
